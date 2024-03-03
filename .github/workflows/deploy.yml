@@ -1,6 +1,6 @@
 name: deploy
 
-run-name: Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
+run-name: Deploy to ${{ inputs.environment }} by @${{ github.actor }}
 
 # concurrency:
 
@@ -15,7 +15,6 @@ on:
 jobs:
   terraform:
     runs-on: ubuntu-latest
-    # environment:
 
     steps:
       - name: Debug

@@ -1,9 +1,14 @@
-name: ci
+name: ci-main
 
 on:
   push:
     branches:
       - main
+
+permissions:
+  # required to login to AWS via OIDC.
+  id-token: write
+  contents: read
 
 jobs:
   build:

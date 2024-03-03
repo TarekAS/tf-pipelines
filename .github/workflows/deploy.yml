@@ -18,6 +18,10 @@ concurrency:
 jobs:
   terraform:
     runs-on: ubuntu-latest
+    environment:
+      name: ${{ inputs.environment }}
+      # url:
+
     defaults:
       run:
         working-directory: ./terraform

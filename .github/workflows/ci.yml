@@ -20,7 +20,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # ... build app ...
+      # ... build app ....
       - name: Trigger "Deploy to dev" workflow
         if: github.ref == 'refs/heads/main'
         env:

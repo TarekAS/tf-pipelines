@@ -32,7 +32,7 @@ jobs:
           gh workflow run --repo ${{ github.repository }} deploy.yml -r ${{ github.ref }} -f environment=dev
 
       - name: Trigger "Deploy to dev for PR - ${{ github.event.pull_request.title }}" workflow
-        if: github.base_ref == 'refs/heads/main'
+        if: github.base_ref == 'main'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |

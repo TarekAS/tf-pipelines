@@ -26,6 +26,7 @@ jobs:
       # ... build app ...
 
   deploy-dev:
+    if: github.ref == 'refs/heads/main'
     needs: [build-and-push]
     uses: ./.github/workflows/deploy.yml
     with:

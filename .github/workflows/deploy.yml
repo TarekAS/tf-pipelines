@@ -10,10 +10,14 @@ on:
         description: "Target environment for deployment."
         type: environment
         required: true
+      suffix:
+        description: "If you want to create a new instance of this environment, add a suffix here. Leave empty to target the original enviroment. This is used for Preview Environments."
+        type: string
+        default: ""
 
 # Ensure that only one deployment runs at a time on the target environment.
 concurrency:
-  group: ${{ github.workflow }}-${{ inputs.environment }}
+  group: ${{ github.workflow }}-${{ inputs.environment }}-${{ inputs.suffix }}
 
 jobs:
   terraform:
@@ -30,7 +34,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - run: echo "The ref is ${{ github.ref }} and head_ref ${{ github.head_ref }}"
+      - run: |
+          echo "ref is ${{ github.ref }}"
+          echo "head_ref ${{ github.head_ref }}"
+          echo "base_ref ${{ github.head_ref }}"
+          echo "suffix ${{ inputs.suffix }}"
 
       # - name: Setup Terraform
       #   uses: hashicorp/setup-terraform@v3

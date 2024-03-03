@@ -6,7 +6,7 @@ on:
       - main
 
 permissions:
-  # required to login to AWS via OIDC.
+  # required to login to AWS via OIDC...
   id-token: write
   contents: read
 
@@ -16,6 +16,7 @@ jobs:
 
   deploy:
     needs: [build]
+    name: Deploy to pr-${{ github.event.pull_request.number }}
     uses: ./.github/workflows/deploy.yml
     with:
       environment: dev

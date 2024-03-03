@@ -1,6 +1,6 @@
 name: cleanup
 
-run-name: Destroying Preview Environment dev pr-${{ github.event.pull_request.number }}
+run-name: Cleaning up PR environment pr-${{ github.event.pull_request.number }}
 
 on:
   pull_request:

@@ -22,7 +22,7 @@ on:
 
 # Ensure that only one deployment runs at a time on the target environment.
 concurrency:
-  group: ${{ github.workflow }} ${{ inputs.environment }} ${{ inputs.suffix }}
+  group: deploy ${{ inputs.environment }} ${{ inputs.suffix }}
 
 jobs:
   terraform:

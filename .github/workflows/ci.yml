@@ -2,6 +2,8 @@ name: ci
 
 on:
   push:
+    branches:
+      - "*"
   pull_request:
     branches:
       - main
@@ -19,13 +21,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # ... build app ...
+      # ... build app .....
 
   deploy:
     needs: [build]
-    if: github.ref == 'refs/heads/main' || github.event.pull_request.base.ref == 'main'
-    name: Deploy to dev ${{ github.ref != 'refs/heads/main' && 'pr-${{ github.event.pull_request.number }}' || '' }}
+    if: github.ref_name == 'main' || github.base_ref == 'main'
+    name: Deploy to dev ${{ github.ref != 'main' && 'pr-${{ github.event.pull_request.number }}' || '' }}
     uses: ./.github/workflows/deploy.yml
     with:
       environment: dev
-      suffix: ${{ github.ref != 'refs/heads/main' && 'pr-${{ github.event.pull_request.number }}' || '' }}
+      suffix: ${{ github.ref_name != 'main' && 'pr-${{ github.event.pull_request.number }}' || '' }}

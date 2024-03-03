@@ -28,5 +28,7 @@ jobs:
         run: |
           gh api --method POST /repos/${{github.repository}}/actions/workflows/deploy.yml/dispatches \
           --header 'Accept: application/vnd.github+json' \
-          --header "X-GitHub-Api-Version: 2022-11-28"
-          # -d '{"ref":"${{ github.ref }}","inputs":{"environment":"dev"}}'
+          --header "X-GitHub-Api-Version: 2022-11-28" \
+          -f ref="${{ github.ref }}" \
+          -f inputs.environment="dev"
+          # -d '{"ref":,"inputs":{"environment":"dev"}}'

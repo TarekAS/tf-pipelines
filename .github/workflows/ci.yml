@@ -10,11 +10,9 @@ permissions:
   # required to login to AWS via OIDC.
   id-token: write
   contents: read
-  # required to trigger deploy workflow.
-  actions: write
 
 jobs:
-  build-and-push:
+  build:
     runs-on: ubuntu-latest
 
     steps:

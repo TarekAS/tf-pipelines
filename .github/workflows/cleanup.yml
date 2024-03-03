@@ -1,9 +1,6 @@
 name: cleanup
 
-env:
-  target: dev-pr-${{ github.event.pull_request.number }}
-
-run-name: Destroying Preview Environment ${{ env.target }}
+run-name: Destroying Preview Environment dev-pr-${{ github.event.pull_request.number }}
 
 on:
   pull_request:
@@ -11,7 +8,7 @@ on:
 
 # Ensure that it only runs if there are no more deployments to that env.
 concurrency:
-  group: deploy-${{ env.target }}
+  group: deploy-dev-pr-${{ github.event.pull_request.number }}
 
 jobs:
   terraform:
@@ -30,7 +27,7 @@ jobs:
         uses: actions/checkout@v4
 
       - run: |
-          echo "target is ${{ env.target }}"
+          echo "target is dev-pr-${{ github.event.pull_request.number }}"
 
       # - name: Setup Terraform
       #   uses: hashicorp/setup-terraform@v3

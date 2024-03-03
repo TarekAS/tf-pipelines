@@ -26,7 +26,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - run: sleep 10000
+      - run: echo "The ref is ${{ github.ref }} and head_ref ${{ github.head_ref }}"
 
       # - name: Setup Terraform
       #   uses: hashicorp/setup-terraform@v3

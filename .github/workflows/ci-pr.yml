@@ -1,0 +1,21 @@
+name: ci
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    uses: ./.github/workflows/build.yml
+    with:
+      environment: dev
+
+  deploy:
+    needs: [build]
+    name: Deploy to pr-${{ github.event.pull_request.number }}
+    uses: ./.github/workflows/deploy.yml
+    with:
+      environment: dev
+      suffix: pr-${{ github.event.pull_request.number }}

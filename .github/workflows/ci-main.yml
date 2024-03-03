@@ -1,0 +1,20 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    uses: ./.github/workflows/build.yml
+    with:
+      environment: dev
+
+  deploy:
+    needs: [build]
+    name: Deploy to dev
+    uses: ./.github/workflows/deploy.yml
+    with:
+      environment: dev

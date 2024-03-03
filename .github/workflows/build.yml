@@ -1,0 +1,21 @@
+name: ci
+
+on:
+  workflow_call:
+
+permissions:
+  # required to login to AWS via OIDC.
+  id-token: write
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - run: echo "${{ github.base_ref }}"
+
+      # ... build app ....

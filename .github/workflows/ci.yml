@@ -31,3 +31,11 @@ jobs:
     uses: ./.github/workflows/deploy.yml
     with:
       environment: dev
+
+  deploy-preview:
+    if: github.event.pull_request.base.ref == 'main'
+    needs: [build-and-push]
+    uses: ./.github/workflows/deploy.yml
+    with:
+      environment: dev
+      suffix: pr-${{ github.event.pull_request.number }}

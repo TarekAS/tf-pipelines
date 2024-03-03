@@ -1,6 +1,6 @@
 name: cleanup
 
-run-name: Destroying Preview Environment dev-pr-${{ github.event.pull_request.number }}
+run-name: Destroying Preview Environment dev pr-${{ github.event.pull_request.number }}
 
 on:
   pull_request:
@@ -8,7 +8,7 @@ on:
 
 # Ensure that it only runs if there are no more deployments to that env.
 concurrency:
-  group: deploy-dev-pr-${{ github.event.pull_request.number }}
+  group: deploy dev pr-${{ github.event.pull_request.number }}
 
 jobs:
   terraform:

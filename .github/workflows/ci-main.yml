@@ -6,7 +6,7 @@ on:
       - main
 
 permissions:
-  # required to login to AWS via OIDC.
+  # required to login to AWS via OIDC...
   id-token: write
   contents: read
 

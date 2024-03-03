@@ -1,14 +1,16 @@
 name: cleanup
 
-run-name: Cleaning up PR environment pr-${{ github.event.pull_request.number }}
+run-name: Cleaning up PR ${{ github.event.pull_request.number }}
 
 on:
   pull_request:
+    branches:
+      - main
     types: [closed]
 
 # Ensure that it only runs if there are no more deployments to that env.
 concurrency:
-  group: deploy dev pr-${{ github.event.pull_request.number }}
+  group: deploy pr ${{ github.event.pull_request.number }}
 
 jobs:
   terraform:
@@ -16,7 +18,7 @@ jobs:
     if: github.event.pull_request.base.ref == 'main'
 
     environment:
-      name: dev
+      name: pr
 
     defaults:
       run:
@@ -25,9 +27,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
-      - run: |
-          echo "target is dev-pr-${{ github.event.pull_request.number }}"
 
       # - name: Setup Terraform
       #   uses: hashicorp/setup-terraform@v3

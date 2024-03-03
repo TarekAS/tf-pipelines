@@ -16,8 +16,8 @@ jobs:
 
   deploy:
     needs: [build]
-    name: Deploy to pr-${{ github.event.pull_request.number }}
+    name: Deploy to PR ${{ github.event.pull_request.number }}
     uses: ./.github/workflows/deploy.yml
     with:
-      environment: dev
-      suffix: pr-${{ github.event.pull_request.number }}
+      environment: pr
+      suffix: ${{ github.event.pull_request.number }}

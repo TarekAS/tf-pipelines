@@ -7,10 +7,10 @@ run-name: Deploy to ${{ inputs.deploy_target }} by @${{ github.actor }}
 on:
   workflow_dispatch:
     inputs:
-      reference:
-        description: "Git commit/branch/tag to deploy to the target environment."
+      environment:
+        description: "Target environment for deployment."
         required: true
-        type: string
+        type: environment
 
 jobs:
   terraform:

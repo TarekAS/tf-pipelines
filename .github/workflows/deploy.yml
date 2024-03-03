@@ -1,6 +1,6 @@
 name: deploy
 
-run-name: Deploy to ${{ inputs.environment }} by @${{ github.actor }}
+# run-name: Deploy to ${{ inputs.environment }}
 
 on:
   # Enable manual trigger for the workflow.
@@ -20,6 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: ${{ inputs.environment }}
+      # url:
 
     defaults:
       run:

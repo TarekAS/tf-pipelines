@@ -3,7 +3,10 @@ name: ci
 on:
   push:
     branches:
-      - "main"
+      - main
+  pull_request:
+    branches:
+      - main
 
 permissions:
   # required to login to AWS via OIDC.

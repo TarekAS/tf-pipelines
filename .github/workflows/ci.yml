@@ -36,4 +36,4 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh workflow run --repo ${{ github.repository }} deploy.yml -r ${{ github.ref }} -f environment=dev -f suffix=pr-${{ github.event.pull_request.number }}
+          gh workflow run --repo ${{ github.repository }} deploy.yml -r ${{ github.head_ref }} -f environment=dev -f suffix=pr-${{ github.event.pull_request.number }}

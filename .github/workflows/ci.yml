@@ -1,0 +1,29 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - "main"
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # ... build app ...
+      - name: Trigger Deploy to dev
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh api --method POST /repos/${{github.repository}}/actions/workflows/deploy/dispatches \
+          --header 'Accept: application/vnd.github+json' \
+          --header "X-GitHub-Api-Version: 2022-11-28"
+          # -d '{"ref":"${{ github.ref }}","inputs":{"environment":"dev"}}'

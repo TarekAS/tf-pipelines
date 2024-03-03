@@ -19,7 +19,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # ... build app ...
+      # ... build app ....
 
   deploy:
     needs: [build]

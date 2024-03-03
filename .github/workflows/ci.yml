@@ -6,8 +6,11 @@ on:
       - "main"
 
 permissions:
+  # required to login to AWS ECR.
   id-token: write
   contents: read
+  # required to trigger deploy workflow.
+  actions: write
 
 jobs:
   build-and-push:

@@ -1,0 +1,23 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - "main"
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # ... build app ...
+  deploy-dev:
+    needs: build
+    runs-on: ubuntu-latest

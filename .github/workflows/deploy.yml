@@ -2,15 +2,18 @@ name: deploy
 
 run-name: Deploy to ${{ inputs.environment }} by @${{ github.actor }}
 
-# concurrency:
-
 on:
+  # Enable manual trigger for the workflow.
   workflow_dispatch:
     inputs:
       environment:
         description: "Target environment for deployment."
-        required: true
         type: environment
+        required: true
+
+# Ensure that only one deployment runs at a time on the target environment.
+concurrency:
+  group: ${{ github.workflow }}-${{ inputs.environment }}
 
 jobs:
   terraform:

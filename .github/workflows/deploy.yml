@@ -14,6 +14,15 @@ on:
         description: "If you want to create a new instance of this environment, add a suffix here. Leave empty to target the original enviroment. This is used for Preview Environments."
         type: string
         default: ""
+  # Allows this workflow to be called from other workflows, like ci.yml
+  workflow_call:
+    inputs:
+      environment:
+        type: string
+        required: true
+      suffix:
+        type: string
+        default: ""
 
 # Ensure that only one deployment runs at a time on the target environment.
 concurrency:

@@ -22,7 +22,7 @@ jobs:
       # ... build app ...
 
   deploy:
-    needs: [build-and-push]
+    needs: [build]
     if: github.ref == 'refs/heads/main' || github.event.pull_request.base.ref == 'main'
     name: Deploy to dev ${{ github.ref != 'refs/heads/main' && 'pr-${{ github.event.pull_request.number }}' || '' }}
     uses: ./.github/workflows/deploy.yml

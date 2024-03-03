@@ -10,7 +10,7 @@ permissions:
   id-token: write
   contents: read
   # required to trigger deploy workflow.
-  # actions: write
+  actions: write
 
 jobs:
   build-and-push:
